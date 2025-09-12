@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Landing Page{%
+endblock %} {% block content %}
+<div
+  class="flex-1 flex items-center justify-center bg-cover bg-center w-screen h-screen"
+  style="
+    background-image: url(&quot;{% static &quot;images/book_landing.jpg&quot; %}&quot;);
+    background-size: cover;
+  "
+>
+  <div class="text-center px-4">
+    <h1 class="text-white text-4xl md:text-6xl font-bold mb-4">
+      Welcome to the World of Books
+    </h1>
+    <p class="text-white text-lg md:text-2xl italic">
+      "A reader lives a thousand lives before he dies."
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+<!-- url('static/images/book_landing.jpg')  -->

@@ -1,0 +1,5 @@
+node_modules
+media
+static
+*.min.js
+*.min.css

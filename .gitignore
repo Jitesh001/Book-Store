@@ -1,0 +1,65 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.py[cod]
+*.so
+*.swp
+*.swo
+*.bak
+*.~*
+
+# Media and Static Files
+media/
+static/
+
+# Virtual Environment
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# .env file (environment variables)
+.env
+
+# Node.js
+node_modules/
+package-lock.json
+package.json
+
+# Django-tailwind related
+static/css/*
+static/js/*
+build/
+tailwind.config.js
+postcss.config.js
+
+# Miscellaneous
+*.bak
+*.swp
+*.swo
+
+# Python packaging
+*.egg
+*.egg-info/
+dist/
+build/
+
+# IDEs
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

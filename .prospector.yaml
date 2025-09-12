@@ -1,0 +1,48 @@
+strictness: medium
+doc-warnings: false
+max-line-length: 120
+allow-shorthand: false
+inherits:
+  - strictness_medium
+
+ignore-paths:
+  - migrations
+  - tests
+  - node_modules
+  - media
+  - static
+
+pylint:
+  disable:
+    - missing-docstring
+    - missing-module-docstring
+    - missing-class-docstring
+    - missing-function-docstring
+    - too-few-public-methods
+    - import-outside-toplevel
+    - logging-fstring-interpolation
+    - django-not-configured
+
+mccabe:
+  max-complexity: 10
+
+dodgy:
+  ignore-decorators:
+    - login_required
+
+pydocstyle:
+  disable:
+    - D100
+    - D101
+    - D102
+    - D103
+    - D104
+    - D105
+    - D106
+    - D107
+
+ignore-patterns:
+  - .*/migrations/.*\.py
+  - .*/__init__\.py$
+
+test-warnings: false
