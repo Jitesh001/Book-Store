@@ -30,8 +30,8 @@ env.bak/
 venv.bak/
 
 # .env file (environment variables)
-*.env
-
+.env
+doppler.env
 
 # Node.js
 node_modules/
