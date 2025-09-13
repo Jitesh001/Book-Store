@@ -1,30 +1,25 @@
-{% extends 'base.html' %} {% load static %} {% block title %} Book Store {%
-endblock %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Book Store
+{% endblock %}
+{% block content %}
 <div class="flex items-start justify-start w-full py-10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-2xl md:text-3xl font-bold mb-6">Available Books</h2>
 
     {% if books %}
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-    >
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {% for book in books %}
       <div
-        class="group bg-white rounded-2xl shadow hover:shadow-lg transition-shadow duration-200 overflow-hidden border border-gray-100"
-      >
+        class="group bg-white rounded-2xl shadow hover:shadow-lg transition-shadow duration-200 overflow-hidden border border-gray-100">
         <div class="w-full h-56 bg-gray-100 overflow-hidden">
           {% if book.cover_image %}
-          <img
-            src="{{ book.cover_image.url }}"
-            alt="{{ book.title }}"
-            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-200"
-          />
+          <img src="{{ book.cover_image.url }}" alt="{{ book.title }}"
+            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-200" />
           {% else %}
-          <img
-            src="{% static 'images/book.jpg' %}"
-            alt="Cover placeholder"
-            class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-200"
-          />
+          <img src="{% static 'images/book.jpg' %}" alt="Cover placeholder"
+            class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-200" />
           {% endif %}
         </div>
 
@@ -41,21 +36,15 @@ endblock %} {% block content %}
           <div class="mt-3">
             {% if book.is_paid %}
             <button
-              class="inline-flex items-center justify-center w-full rounded-xl px-4 py-2.5 bg-indigo-600 text-white font-medium hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 transition"
-            >
-              <a
-                href="{% url 'download_book_file' book.uuid %}"
-                class="text-white"
-              >
+              class="inline-flex items-center justify-center w-full rounded-xl px-4 py-2.5 bg-indigo-600 text-white font-medium hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 transition">
+              <a href="{% url 'download_book_file' book.uuid %}" class="text-white">
                 Download
               </a>
             </button>
             {% else %}
             <button
               class="rzp-button inline-flex items-center justify-center w-full rounded-xl px-4 py-2.5 bg-indigo-600 text-white font-medium hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 transition"
-              data-uuid="{{ book.uuid }}"
-              data-title="{{ book.title|escape }}"
-            >
+              data-uuid="{{ book.uuid }}" data-title="{{ book.title|escape }}">
               Buy Now
             </button>
             {% endif %}
@@ -65,9 +54,7 @@ endblock %} {% block content %}
       {% endfor %}
     </div>
     {% else %}
-    <div
-      class="flex items-center justify-center h-60 rounded-2xl bg-gray-50 border border-dashed border-gray-200"
-    >
+    <div class="flex items-center justify-center h-60 rounded-2xl bg-gray-50 border border-dashed border-gray-200">
       <p class="text-gray-600">No books available</p>
     </div>
     {% endif %}

@@ -66,9 +66,8 @@ repos:
         additional_dependencies:
           - prettier@3
           - prettier-plugin-tailwindcss@0.6.13
-          - prettier-plugin-jinja-template@2.1.0
         files: >-
-          \.(js|jsx|ts|tsx|css|scss|html|json|md|yml|yaml|svg|ico|txt)$
+          \.(js|jsx|ts|tsx|css|scss|json|md|yml|yaml|svg|ico|txt)$
 
   # Local project hooks
   - repo: local

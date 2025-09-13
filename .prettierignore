@@ -3,3 +3,5 @@ media
 static
 *.min.js
 *.min.css
+*.html
+src/templates/**
