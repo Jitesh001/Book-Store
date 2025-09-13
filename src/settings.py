@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -190,7 +191,8 @@ RAZORPAY_KEY_ID = config("RAZORPAY_KEY_ID", default="")
 RAZORPAY_KEY_SECRET = config("RAZORPAY_KEY_SECRET", default="")
 RAZORPAY_CALLBACK_URL = config("RAZORPAY_CALLBACK_URL", default="")
 
-if not DEBUG:
+USE_S3_BUCKET = config("USE_S3_BUCKET", default=False, cast=bool)
+if not DEBUG and USE_S3_BUCKET:
     # AWS CONFIG
     AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID", default="")
     AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY", default="")
@@ -214,16 +216,15 @@ if not DEBUG:
             "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
         },
     }
+else:
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-STATIC_ROOT = os.path.join(
-    BASE_DIR, "staticfiles"
-)  # gather all static files here when run collectstatic
-# Media files
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    # Static files (CSS, JavaScript, Images)
+    STATIC_URL = "/static/"
+    STATICFILES_DIRS = [
+        BASE_DIR / "static",
+    ]
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    # Media files
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")

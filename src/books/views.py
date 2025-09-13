@@ -78,6 +78,7 @@ class PaymentCallBackView(View):
 
 def download_book_file(request, book_uuid):
     book = get_object_or_404(Book, uuid=book_uuid)
+
     if not book.book_file:
         raise Http404("Book PDF not found")
 
@@ -85,11 +86,6 @@ def download_book_file(request, book_uuid):
     if not os.path.exists(file_path):
         raise Http404("File not found")
 
-    with open(file_path, "rb") as f:
-        response = FileResponse(
-            f, as_attachment=True, filename=os.path.basename(file_path)
-        )
-    response["Content-Disposition"] = (
-        f'attachment; filename="{os.path.basename(file_path)}"'
-    )
+    f = open(file_path, "rb")  # pylint: disable=consider-using-with
+    response = FileResponse(f, as_attachment=True, filename=os.path.basename(file_path))
     return response

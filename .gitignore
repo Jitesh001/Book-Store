@@ -5,6 +5,7 @@
 __pycache__/
 *.db
 *.sqlite3
+.mypy_cache/
 
 # Django
 *.log
@@ -18,7 +19,7 @@ __pycache__/
 
 # Media and Static Files
 media/
-static/
+# static/
 
 # Virtual Environment
 venv/
@@ -33,15 +34,9 @@ venv.bak/
 
 # Node.js
 node_modules/
-package-lock.json
-package.json
 
 # Django-tailwind related
-static/css/*
-static/js/*
-build/
-tailwind.config.js
-postcss.config.js
+staticfiles/
 
 # Miscellaneous
 *.bak

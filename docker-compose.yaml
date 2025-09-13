@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  django:
+    build:
+      context: .
+      args:
+        - GIT_BRANCH=${GIT_BRANCH:-main}
+    image: jitesh/bookstore-backend:${GIT_BRANCH:-main}
+    restart: always
+    environment:
+      - PYTHONUNBUFFERED
+      - SECRET_KEY
+      - DEBUG
+      - ALLOWED_HOSTS
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - DB_HOST
+      - DB_PORT
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_STORAGE_BUCKET_NAME
+      - AWS_S3_REGION_NAME
+      - OAUTH_GOOGLE_CLIENT_ID
+      - OAUTH_GOOGLE_SECRET
+      - OAUTH_GITHUB_CLIENT_ID
+      - OAUTH_GITHUB_SECRET
+      - OAUTH_TWITTER_CLIENT_ID
+      - OAUTH_TWITTER_SECRET
+      - OAUTH_FACEBOOK_CLIENT_ID
+      - OAUTH_FACEBOOK_SECRET
+      - RAZORPAY_KEY_ID
+      - RAZORPAY_KEY_SECRET
+      - RAZOR_PAY_CALLBACK_URL
+    ports:
+      - "8000:8000"
+    entrypoint: ./docker-entrypoint.sh
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./staticfiles:/app/staticfiles
+      - ./media:/app/media
+
+volumes:
+  postgres_data:
