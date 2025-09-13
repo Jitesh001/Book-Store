@@ -19,7 +19,7 @@ services:
       context: .
       args:
         - GIT_BRANCH=${GIT_BRANCH:-main}
-    image: jitesh/bookstore-backend:${GIT_BRANCH:-main}
+    image: pixiejitesh/bookstore-backend:${GIT_BRANCH:-main}
     restart: always
     environment:
       - PYTHONUNBUFFERED

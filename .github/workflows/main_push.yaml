@@ -40,7 +40,7 @@ jobs:
           build-args: |
             GIT_BRANCH=${{ steps.branch.outputs.name }}
           tags: |
-            jitesh/bookstore-backend:${{ steps.branch.outputs.name }}
-            jitesh/bookstore-backend:latest
-          cache-from: type=registry,ref=jitesh/bookstore-backend:buildcache
-          cache-to: type=registry,ref=jitesh/bookstore-backend:buildcache,mode=max
+            pixiejitesh/bookstore-backend:${{ steps.branch.outputs.name }}
+            pixiejitesh/bookstore-backend:latest
+          cache-from: type=registry,ref=pixiejitesh/bookstore-backend:buildcache
+          cache-to: type=registry,ref=pixiejitesh/bookstore-backend:buildcache,mode=max
