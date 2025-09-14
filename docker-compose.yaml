@@ -52,8 +52,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    volumes:
-      - ./media:/app/media
 
 volumes:
   postgres_data:
