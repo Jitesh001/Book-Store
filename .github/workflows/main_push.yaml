@@ -43,4 +43,5 @@ jobs:
           tags: |
             pixiejitesh/bookstore-backend:${{ steps.branch.outputs.name }}
             pixiejitesh/bookstore-backend:latest
-          cache-to: type=registry,ref=pixiejitesh/bookstore-backend:buildcache,mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
