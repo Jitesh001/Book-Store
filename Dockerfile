@@ -24,13 +24,12 @@ COPY . .
 
 # ---------- node builder for Tailwind ----------
 FROM node:20-bookworm AS node-build
-WORKDIR /web
+WORKDIR /app
+
 COPY package.json package-lock.json ./
 RUN npm ci
-COPY ./static ./static
 
-# If you can, prefer a production-only build
-# RUN npm ci --omit=dev
+COPY ./static ./static
 RUN npm run build:css
 
 # ---------- final runtime ----------
@@ -54,8 +53,7 @@ WORKDIR /app
 # Copy venv and app
 COPY --from=py-build /opt/venv /opt/venv
 COPY --from=py-build /app /app
-# Built static assets
-COPY --from=node-build /web/static/ /app/static/
+COPY --from=node-build /app/static/dist /app/static/dist
 
 # Ensure entrypoint is executable
 RUN chmod u+x docker-entrypoint.sh
