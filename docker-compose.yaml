@@ -53,7 +53,6 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - ./staticfiles:/app/staticfiles
       - ./media:/app/media
 
 volumes:

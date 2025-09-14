@@ -41,3 +41,6 @@ db:
 
 startapp:
 	manage startapp $(APPNAME)
+
+collectstatic:
+	manage collectstatic --noinput

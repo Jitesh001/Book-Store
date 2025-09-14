@@ -31,7 +31,7 @@ COPY ./static ./static
 
 # If you can, prefer a production-only build
 # RUN npm ci --omit=dev
-RUN npm run build:css || echo "No build:css script; skipping"
+RUN npm run build:css
 
 # ---------- final runtime ----------
 FROM python:3.12-slim-bookworm AS runtime
@@ -55,11 +55,10 @@ WORKDIR /app
 COPY --from=py-build /opt/venv /opt/venv
 COPY --from=py-build /app /app
 # Built static assets
-COPY --from=node-build /web/static/dist /app/static/dist
+COPY --from=node-build /web/static/ /app/static/
 
 # Ensure entrypoint is executable
-RUN chmod u+x docker-entrypoint.sh && chown -R appuser:appuser /app
-USER appuser
+RUN chmod u+x docker-entrypoint.sh
 
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 CMD curl -fsS http://127.0.0.1:${PORT}/health || exit 1
