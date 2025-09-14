@@ -3,15 +3,12 @@
 __pycache__/
 *.py[cod]
 *.sqlite3
-.env
-.env.*
-.doppler*
 media/
 node_modules/
 staticfiles/
-static/dist/
 static/.cache/
 coverage/
 .mypy_cache/
 .pytest_cache/
 .DS_Store
+.env

@@ -47,8 +47,9 @@ staticfiles/
 # Python packaging
 *.egg
 *.egg-info/
-dist/
 build/
+package.json
+package-lock.json
 
 # IDEs
 .vscode/
