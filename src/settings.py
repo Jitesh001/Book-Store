@@ -192,7 +192,7 @@ RAZORPAY_KEY_SECRET = config("RAZORPAY_KEY_SECRET", default="")
 RAZORPAY_CALLBACK_URL = config("RAZORPAY_CALLBACK_URL", default="")
 
 USE_S3_BUCKET = config("USE_S3_BUCKET", default=False, cast=bool)
-if not DEBUG and USE_S3_BUCKET:
+if USE_S3_BUCKET:
     # AWS CONFIG
     AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID", default="")
     AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY", default="")
