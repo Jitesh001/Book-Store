@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push (rebuild cache)
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -43,5 +43,4 @@ jobs:
           tags: |
             pixiejitesh/bookstore-backend:${{ steps.branch.outputs.name }}
             pixiejitesh/bookstore-backend:latest
-          cache-from: type=registry,ref=pixiejitesh/bookstore-backend:buildcache
           cache-to: type=registry,ref=pixiejitesh/bookstore-backend:buildcache,mode=max
