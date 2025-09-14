@@ -53,14 +53,5 @@ services:
       postgres:
         condition: service_healthy
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - django
-
 volumes:
   postgres_data:
