@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% load static socialaccount %}
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-end w-full h-screen bg-cover bg-center" style="
+    background-image: url('{% static 'images/book2.jpg' %}');
+    background-size: cover;
+  ">
+  <div class="p-4 w-[350px] rounded-[15px] border-black border-2 shadow-md mr-6">
+    <h3 class="text-center mb-4 font-bold">Login</h3>
+
+    <div class="flex flex-col gap-3">
+      <a href="{% provider_login_url 'google' %}"
+        class="flex items-center justify-center gap-2 rounded-md border-2 py-2 shadow-md">
+        <img src="{% static 'icons/google.svg' %}" width="20" class="mr-2" />
+        <span>Sign in with Google</span>
+      </a>
+
+      <a href="{% provider_login_url 'facebook' %}"
+        class="flex items-center justify-center gap-2 rounded-md border-2 py-2 shadow-md">
+        <img src="{% static 'icons/facebook.svg' %}" width="25" class="mr-2" />
+        <span>Sign in with Facebook</span>
+      </a>
+
+      <a href="{% provider_login_url 'twitter' %}"
+        class="flex items-center justify-center gap-2 rounded-md border-2 py-2 shadow-md">
+        <img src="{% static 'icons/x.svg' %}" width="20" class="mr-2" />
+        <span>Sign in with X</span>
+      </a>
+
+      <a href="{% provider_login_url 'github' %}"
+        class="flex items-center justify-center gap-2 rounded-md border-2 py-2 shadow-md">
+        <img src="{% static 'icons/github.svg' %}" width="30" class="mr-2" />
+        <span>Sign in with GitHub</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
