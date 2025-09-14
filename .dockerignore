@@ -6,9 +6,9 @@ __pycache__/
 media/
 node_modules/
 staticfiles/
-static/dist/
 static/.cache/
 coverage/
 .mypy_cache/
 .pytest_cache/
 .DS_Store
+.env

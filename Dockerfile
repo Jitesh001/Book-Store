@@ -22,16 +22,6 @@ RUN python -m venv /opt/venv \
 # Copy the rest of the project (respect .dockerignore)
 COPY . .
 
-# ---------- node builder for Tailwind ----------
-FROM node:20-bookworm AS node-build
-WORKDIR /app
-
-COPY package.json package-lock.json ./
-RUN npm ci
-
-COPY ./static ./static
-RUN npm run build:css
-
 # ---------- final runtime ----------
 FROM python:3.12-slim-bookworm AS runtime
 
@@ -53,7 +43,6 @@ WORKDIR /app
 # Copy venv and app
 COPY --from=py-build /opt/venv /opt/venv
 COPY --from=py-build /app /app
-COPY --from=node-build /app/static/dist /app/static/dist
 
 # Ensure entrypoint is executable
 RUN chmod u+x docker-entrypoint.sh
